@@ -14,4 +14,4 @@ vim.opt.swapfile = false
 
 vim.opt.incsearch = true
 
-vim.opt.scrolloff = 8
+Vim.opt.scrolloff = 8

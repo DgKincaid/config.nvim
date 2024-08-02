@@ -95,9 +95,6 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-
 -- Enable break indent
 vim.opt.breakindent = true
 
