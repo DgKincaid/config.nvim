@@ -102,6 +102,8 @@ return {
         -- or a suggestion from your LSP for this to activate.
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
+        map('K', vim.lsp.buf.hover, 'Hove Documentation')
+
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -165,8 +167,8 @@ return {
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       -- clangd = {},
+      jsonls = {},
       gopls = {
-        cmd = { 'gopls' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
         settings = {
           gopls = {
@@ -215,15 +217,19 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
+      'gofumpt',
+      'goimports',
+      -- 'gomodifytags', NOTE: Used to modify tags may be usefull in the future
     })
+
+    print(table.concat(ensure_installed, ', '))
+
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
-
-          print('server name', server_name)
 
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
