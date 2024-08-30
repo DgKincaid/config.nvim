@@ -15,3 +15,7 @@ vim.opt.swapfile = false
 vim.opt.incsearch = true
 
 vim.opt.scrolloff = 8
+
+-- Spell checker
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
