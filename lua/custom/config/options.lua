@@ -19,3 +19,4 @@ vim.opt.scrolloff = 8
 -- Spell checker
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
+vim.opt.spelloptions = 'camel'

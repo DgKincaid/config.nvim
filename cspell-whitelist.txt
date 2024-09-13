@@ -1,0 +1,6 @@
+emvee
+Primeagen
+golangci
+luacheck
+codespell
+nvim

@@ -1,13 +1,14 @@
 return {
-
   { -- Linting
     'mfussenegger/nvim-lint',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
+        ['*'] = { 'codespell', 'cspell' },
         markdown = { 'markdownlint' },
-        lua = { '' },
+        lua = { 'luacheck' },
+        go = { 'codespell', 'cspell' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
