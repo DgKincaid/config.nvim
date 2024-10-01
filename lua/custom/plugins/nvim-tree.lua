@@ -1,3 +1,6 @@
+return {}
+
+--[[
 return {
   'nvim-tree/nvim-tree.lua',
   lazy = false,
@@ -27,3 +30,4 @@ return {
     keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer' }) -- refresh file explorer
   end,
 }
+--]]
