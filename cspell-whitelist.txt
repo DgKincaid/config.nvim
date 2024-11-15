@@ -1,6 +1,7 @@
+codespell
 emvee
-Primeagen
 golangci
 luacheck
-codespell
 nvim
+Primeagen
+seperate
