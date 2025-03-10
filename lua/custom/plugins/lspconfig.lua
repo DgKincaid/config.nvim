@@ -156,6 +156,13 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+    local dartExcludedFolders = {
+      vim.fn.expand '$HOME/AppData/Local/Pub/Cache',
+      vim.fn.expand '$HOME/.pub-cache',
+      vim.fn.expand '/opt/homebrew/',
+      vim.fn.expand '$HOME/tools/flutter/',
+    }
+
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
@@ -164,7 +171,7 @@ return {
     --  - filetypes (table): Override the default list of associated filetypes for the server
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
-    --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+    --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings
     local servers = {
       -- clangd = {},
       jsonls = {},
@@ -174,6 +181,45 @@ return {
           gopls = {
             staticcheck = true,
             gofumpt = true,
+          },
+        },
+      },
+      dcmls = {
+        capabilities = capabilities,
+        cmd = {
+          'dcm',
+          'start-server',
+        },
+        filetypes = { 'dart', 'yaml' },
+        settings = {
+          dart = {
+            analysisExcludedFolders = dartExcludedFolders,
+          },
+        },
+      },
+      dartls = {
+        capabilities = capabilities,
+        cmd = {
+          'dart',
+          'language-server',
+          '--protocol=lsp',
+          -- "--port=8123",
+          -- "--instrumentation-log-file=/Users/robertbrunhage/Desktop/lsp-log.txt",
+        },
+        filetypes = { 'dart' },
+        init_options = {
+          onlyAnalyzeProjectsWithOpenFiles = false,
+          suggestFromUnimportedLibraries = true,
+          closingLabels = true,
+          outline = false,
+          flutterOutline = false,
+        },
+        settings = {
+          dart = {
+            analysisExcludedFolders = dartExcludedFolders,
+            updateImportsOnRename = true,
+            completeFunctionCalls = true,
+            showTodos = true,
           },
         },
       },
@@ -222,8 +268,6 @@ return {
       -- 'gomodifytags', NOTE: Used to modify tags may be usefull in the future
     })
 
-    print(table.concat(ensure_installed, ', '))
-
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
@@ -231,6 +275,7 @@ return {
         function(server_name)
           local server = servers[server_name] or {}
 
+          print(server_name)
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
