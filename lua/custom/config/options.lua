@@ -20,3 +20,6 @@ vim.opt.scrolloff = 8
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 vim.opt.spelloptions = 'camel'
+
+vim.opt.colorcolumn = '80'
+vim.opt.textwidth = 80

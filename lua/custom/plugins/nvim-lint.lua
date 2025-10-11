@@ -6,7 +6,7 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         ['*'] = { 'codespell', 'cspell' },
-        markdown = { 'markdownlint' },
+        -- markdown = { 'marksdown' },
         lua = { 'luacheck' },
         go = { 'codespell', 'cspell' },
       }

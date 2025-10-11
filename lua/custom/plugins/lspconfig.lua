@@ -222,6 +222,9 @@ return {
             showTodos = true,
           },
         },
+      marksman = {
+        cmd = { 'marksman' },
+        filetypes = { 'markdown' },
       },
       -- pyright = {},
       -- rust_analyzer = {},
@@ -265,6 +268,8 @@ return {
       'stylua', -- Used to format Lua code
       'gofumpt',
       'goimports',
+      'markdown',
+      'markdown_inline',
       -- 'gomodifytags', NOTE: Used to modify tags may be usefull in the future
     })
 
