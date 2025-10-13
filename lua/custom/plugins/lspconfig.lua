@@ -184,6 +184,7 @@ return {
           },
         },
       },
+<<<<<<< HEAD
       dcmls = {
         capabilities = capabilities,
         cmd = {
@@ -222,6 +223,8 @@ return {
             showTodos = true,
           },
         },
+=======
+>>>>>>> 18fc569 (adding markdown support)
       marksman = {
         cmd = { 'marksman' },
         filetypes = { 'markdown' },
